@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ChestShops">
+    <output-path>$PROJECT_DIR$/../../Servers/servers/1.16.5/plugins</output-path>
+    <root id="archive" name="ChestShops.jar">
+      <element id="module-output" name="ChestShops" />
+    </root>
+  </artifact>
+</component>

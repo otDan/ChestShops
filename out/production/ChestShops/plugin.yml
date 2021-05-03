@@ -1,0 +1,21 @@
+main: ot.dan.chestshops.ChestShops
+name: ChestShops
+author: otDan
+version: PRIVATE
+api-version: 1.16
+depend:
+  - HolographicDisplays
+  - Vault
+softdepend:
+  - Multiverse-Core
+commands:
+  shop:
+    description: Command to open Shop gui
+    aliases:
+      - chestshop
+      - chestshops
+      - shops
+      - cshop
+      - cshops
+      - chests
+      - chest

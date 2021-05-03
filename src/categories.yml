@@ -1,0 +1,15 @@
+building:
+  - "oak_planks"
+  - "stone"
+minerals:
+  - "coal"
+  - "coal_ore"
+  - "diamond"
+farming:
+  - "wheat"
+redstone:
+  - "tnt"
+potions:
+  - "potion"
+miscellaneous:
+  - "elytra"
