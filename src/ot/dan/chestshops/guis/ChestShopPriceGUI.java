@@ -2,9 +2,6 @@ package ot.dan.chestshops.guis;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
@@ -163,20 +160,12 @@ public class ChestShopPriceGUI implements InventoryHolder {
         inventory.setItem(13, item);
     }
 
-    @EventHandler
-    public void onClose(InventoryCloseEvent event) {
-        if (event.getInventory().getHolder() != this) return;
-        if(buy) {
-            chestShop.setBuyPrice(priceChange);
-            event.getPlayer().sendMessage(plugin.getColors().translate("&8&l> &aYou successfully set your shops buy price!"));
-        }
-        else {
-            chestShop.setSellPrice(priceChange);
-            event.getPlayer().sendMessage(plugin.getColors().translate("&8&l> &aYou successfully set your shops sell price!"));
-        }
+    public ChestShop getChestShop() {
+        return chestShop;
+    }
 
-
-        Bukkit.getScheduler().runTaskLater(plugin, () -> chestShop.openChestShopGUI((Player) event.getPlayer()), 1);
+    public boolean isBuy() {
+        return buy;
     }
 
     public ItemStack getDisable() {

@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -231,6 +232,25 @@ public class ChestShopGuiEvents implements Listener {
 
             event.setCancelled(true);
             Bukkit.getScheduler().runTaskLater(plugin, player::updateInventory, 1);
+        }
+    }
+
+    @EventHandler
+    public void onClose(InventoryCloseEvent event) {
+        Inventory inventory = event.getInventory();
+        if(inventory.getHolder() instanceof ChestShopPriceGUI) {
+            ChestShopPriceGUI chestShopPriceGUI = (ChestShopPriceGUI) inventory.getHolder();
+            ChestShop chestShop = chestShopPriceGUI.getChestShop();
+            if (chestShopPriceGUI.isBuy()) {
+                chestShop.setBuyPrice(chestShopPriceGUI.getPriceChange());
+                event.getPlayer().sendMessage(plugin.getColors().translate("&8&l> &aYou successfully set your shops buy price!"));
+            } else {
+                chestShop.setSellPrice(chestShopPriceGUI.getPriceChange());
+                event.getPlayer().sendMessage(plugin.getColors().translate("&8&l> &aYou successfully set your shops sell price!"));
+            }
+
+
+            Bukkit.getScheduler().runTaskLater(plugin, () -> chestShop.openChestShopGUI((Player) event.getPlayer()), 1);
         }
     }
 
